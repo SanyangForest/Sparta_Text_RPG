@@ -111,3 +111,5 @@ public class Character
         Gold = gold;
     }
 }
+
+//커밋해보기
