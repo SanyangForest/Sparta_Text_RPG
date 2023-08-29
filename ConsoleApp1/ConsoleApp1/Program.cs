@@ -13,7 +13,7 @@
         // 캐릭터 정보 세팅
         player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
 
-        // 아이템 정보 세팅
+        
     }
 
     static void DisplayGameIntro()
@@ -38,6 +38,18 @@
             case 2:
                 Shop();
                 break;
+        }
+    }
+
+    public class Item
+    {
+        public string Name { get; }
+        public int Price { get; }
+
+        public Item(string name, int price)
+        {
+            Name = name;
+            Price = price;
         }
     }
     static void Shop()
@@ -146,12 +158,7 @@ public class Character
     public int Atk { get; }
     public int Def { get; }
     public int Hp { get; }
-    public int Gold;
-    public int Go1d
-    {
-        get { return Go1d; }
-        private set { Go1d = value; }
-    }
+    public int Gold { get; private set; }
 
     public Character(string name, string job, int level, int atk, int def, int hp, int gold)
     {
@@ -166,8 +173,8 @@ public class Character
 
     public void ModifyGold(int amount)
     {
-        Go1d += amount;
+        Gold += amount;
     }
-}
 
+}
 //커밋해보기
