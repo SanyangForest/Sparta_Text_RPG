@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "D:\\Git\\Sparta\\TextRpg\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "D:\\Git\\Sparta\\TextRpg\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "D:\\Git\\Sparta\\TextRpg\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "D:\\GitHub\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
-        "packagesPath": "C:\\Users\\Yul\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "projectPath": "D:\\Git\\Sparta\\TextRpg\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "packagesPath": "C:\\Users\\맹주한-PC\\.nuget\\packages\\",
+        "outputPath": "D:\\Git\\Sparta\\TextRpg\\Sparta_Text_RPG\\ConsoleApp1\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Yul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\맹주한-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }
