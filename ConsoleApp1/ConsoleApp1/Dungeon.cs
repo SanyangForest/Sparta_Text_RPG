@@ -157,7 +157,7 @@ namespace ConsoleApp1
             }
         }
         private const double BaseCriticalChance = 0.5; // 기본 치명타 확률 (10%)
-        private const double BaseDodgeChance = 0.5;    // 기본 회피 확률 (10%) 커밋때문에 더 적음
+        private const double BaseDodgeChance = 0.5;    // 기본 회피 확률 (10%)
 
 
     }
