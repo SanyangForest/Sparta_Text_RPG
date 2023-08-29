@@ -19,7 +19,7 @@ namespace ConsoleApp1
          
             Console.Clear();
             Console.WriteLine("1. 마을");
-            Console.WriteLine("2. 배틀1");
+            Console.WriteLine("2. 배틀");
             Console.WriteLine("진입하시겠습니까?");
 
             int input = Program.CheckValidInput(1, 2);
@@ -124,17 +124,40 @@ namespace ConsoleApp1
         }
         public void BattleLogic(Monster monster)
         {
+            // 회피 여부 결정
+            bool isDodged = false;
+            double dodgeRoll = RandomHelper.GetRandomDouble();
+            if (dodgeRoll < BaseDodgeChance)
+            {
+                isDodged = true;
+                Console.WriteLine($"{monster.Name}의 공격을 회피했습니다!");
+            }
+            else
+            {
+                // 치명타 여부 결정
+                bool isCritical = false;
+                double criticalRoll = RandomHelper.GetRandomDouble();
+                if (criticalRoll < BaseCriticalChance)
+                {
+                    isCritical = true;
+                    Console.WriteLine($"치명타 발생!");
+                }
 
+                int damage = isCritical ? Atk * 2 : Atk; // 치명타면 데미지 2배
 
-            Console.WriteLine($"Lv.{Level} {Name} 의 공격!");
-            Console.WriteLine($" {Name} 을(를) 맞췄습니다.  [데미지: {Atk}]");
+                Console.WriteLine($"Lv.{Level} {Name}의 공격!");
+                Console.WriteLine($"{Name}을(를) 맞췄습니다. [데미지: {damage}]");
 
-            Console.WriteLine($"Lv.{Level} {Name}");
-            Console.WriteLine($"HP{Hp}-> {Hp -= Atk}");
-            Console.WriteLine($"HP {Hp}");
-
-
+                if (!isDodged)
+                {
+                    Console.WriteLine($"Lv.{Level} {Name}");
+                    Console.WriteLine($"HP {Hp}->{Hp -= damage}");
+                    Console.WriteLine($"HP {Hp}");
+                }
+            }
         }
+        private const double BaseCriticalChance = 0.5; // 기본 치명타 확률 (10%)
+        private const double BaseDodgeChance = 0.5;    // 기본 회피 확률 (10%)
 
 
     }
