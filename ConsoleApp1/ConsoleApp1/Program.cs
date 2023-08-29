@@ -36,7 +36,7 @@
                 break;
 
             case 2:
-                // 작업해보기
+                Shop();
                 break;
         }
     }
@@ -146,10 +146,11 @@ public class Character
     public int Atk { get; }
     public int Def { get; }
     public int Hp { get; }
-    public int Gold
+    public int Gold;
+    public int Go1d
     {
-        get { return Gold; }
-        private set { Gold = value; }
+        get { return Go1d; }
+        private set { Go1d = value; }
     }
 
     public Character(string name, string job, int level, int atk, int def, int hp, int gold)
@@ -165,7 +166,7 @@ public class Character
 
     public void ModifyGold(int amount)
     {
-        Gold += amount;
+        Go1d += amount;
     }
 }
 
