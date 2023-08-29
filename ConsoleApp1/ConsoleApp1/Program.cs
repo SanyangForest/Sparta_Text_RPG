@@ -104,16 +104,28 @@
     static void DisplayMyInfo()
     {
         Console.Clear();
-
-        Console.WriteLine("상태보기");
-        Console.WriteLine("캐릭터의 정보를 표시합니다.");
         Console.WriteLine();
-        Console.WriteLine($"Lv.{player.Level}");
-        Console.WriteLine($"{player.Name}({player.Job})");
-        Console.WriteLine($"공격력 :{player.Atk}");
-        Console.WriteLine($"방어력 : {player.Def}");
-        Console.WriteLine($"체력 : {player.Hp}");
-        Console.WriteLine($"Gold : {player.Gold} G");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(" 상태 보기 ");
+        Console.WriteLine();        
+        Console.WriteLine(" 캐릭터의 정보를 표시합니다. ");
+        Console.ResetColor();
+        Console.WriteLine();
+        Console.WriteLine($" 레벨 : {player.Level} ");
+        Console.WriteLine();
+        Console.WriteLine($" 이름 : {player.Name} ");
+        Console.WriteLine();
+        Console.WriteLine($" 직업 : {player.Job} ");        
+        Console.WriteLine();
+        Console.WriteLine($" 공격력 :{player.Atk} ");
+        Console.WriteLine();
+        Console.WriteLine($" 방어력 : {player.Def} ");
+        Console.WriteLine();
+        Console.WriteLine($" 체력 : {player.Hp} ");
+        Console.WriteLine();
+        Console.WriteLine($" 경험치 : {player.Exp} %");
+        Console.WriteLine();
+        Console.WriteLine($" Gold : {player.Gold} G");
         Console.WriteLine();
         Console.WriteLine("0. 나가기");
 
@@ -159,6 +171,7 @@ public class Character
     public int Def { get; }
     public int Hp { get; }
     public int Gold { get; set;}
+    public float Exp { get; set;}
 
     public Character(string name, string job, int level, int atk, int def, int hp, int gold)
     {
