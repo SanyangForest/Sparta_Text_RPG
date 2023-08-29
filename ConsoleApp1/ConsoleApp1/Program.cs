@@ -1,34 +1,76 @@
-﻿internal class Program //커밋 해보기
-{
+﻿internal class Program
+{ 
     private static Character player;
-
+           
     static void Main(string[] args)
     {
-        GameDataSetting();
+        GameStartIntro(); // 처음 시작 화면
+
         DisplayGameIntro();
     }
 
-    static void GameDataSetting()
+    static void GameStartIntro()
     {
-        // 캐릭터 정보 세팅
-        player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
+        Console.Clear();
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(" ! ~ Dungeon Of Sparta ~ ! ");
+        Console.ResetColor();
+        Console.WriteLine();
+        Console.WriteLine(" 직업을 선택해주세요 ");
+        Console.WriteLine();
+        Console.WriteLine(" 1: 전사 2: 궁수 3: 도적 ");
+        int input = CheckValidInput(1, 3);
+        switch(input)
+        {
+            case 1:
+                GameDataSetting(1);
+                break;
+            case 2:
+                GameDataSetting(2);
+                break;
+            case 3:
+                GameDataSetting(3);
+                break;
+        }
 
+    }
+    static void GameDataSetting(int input)
+    {
+        switch(input)
+        {
+            case 1:
+                player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
+                break;
+            case 2:
+                player = new Character("Atena", "궁수", 1, 15, 0, 60, 1500);
+                break;
+            case 3:
+                player = new Character("Hermes", "도적", 1, 12, 3, 80, 1500);
+                break;
+        }     
+        
         // 아이템 정보 세팅
     }
 
     static void DisplayGameIntro()
     {
         Console.Clear();
-
-        Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-        Console.WriteLine("이곳에서 전전으로 들어가기 전 활동을 할 수 있습니다.");
         Console.WriteLine();
-        Console.WriteLine("1. 상태보기");
-        Console.WriteLine("2. 인벤토리");
+        Console.ForegroundColor = ConsoleColor.DarkCyan;
+        Console.WriteLine(" 스파르타 마을에 오신 여러분 환영합니다.");
         Console.WriteLine();
-        Console.WriteLine("원하시는 행동을 입력해주세요.");
+        Console.WriteLine(" 마을에서 아래 활동을 할 수 있습니다.");
+        Console.ResetColor();
+        Console.WriteLine();
+        Console.WriteLine("1. 상태보기 ");
+        Console.WriteLine("2. 인벤토리 ");
+        Console.WriteLine("3. 상점 가기 ");
+        Console.WriteLine("4. 던전 가기 ");
+        Console.WriteLine();
+        Console.WriteLine(" 원하시는 행동을 입력해주세요. ");
 
-        int input = CheckValidInput(1, 2);
+        int input = CheckValidInput(1, 4);
         switch (input)
         {
             case 1:
@@ -36,14 +78,20 @@
                 break;
 
             case 2:
-                // 작업해보기
+                DisplayInventory();
+                break;
+            case 3:
+                Shop();
+                break;
+            case 4:
+                // 던전 가는 거 넣어주세요!
                 break;
         }
     }
     static void Shop()
     {
         Console.Clear();
-        Console.WriteLine("상점에 오신 것을 환영합니다 !")
+        Console.WriteLine("상점에 오신 것을 환영합니다 !");
         Console.WriteLine("아래에 물건을 구매하실 수 있습니다.");
         Console.WriteLine("현재 소지액: " + player.Gold);
         
@@ -53,7 +101,7 @@
         Console.Clear();
 
         Console.WriteLine("상태보기");
-        Console.WriteLine("캐릭터의 정보르 표시합니다.");
+        Console.WriteLine("캐릭터의 정보를 표시합니다.");
         Console.WriteLine();
         Console.WriteLine($"Lv.{player.Level}");
         Console.WriteLine($"{player.Name}({player.Job})");
@@ -105,7 +153,7 @@ public class Character
     public int Atk { get; }
     public int Def { get; }
     public int Hp { get; }
-    public int Gold { get; }
+    public int Gold { get; set;}
 
     public Character(string name, string job, int level, int atk, int def, int hp, int gold)
     {
@@ -118,5 +166,3 @@ public class Character
         Gold = gold;
     }
 }
-
-//커밋해보기
