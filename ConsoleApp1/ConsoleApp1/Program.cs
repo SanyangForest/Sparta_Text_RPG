@@ -12,7 +12,7 @@
     }
 
     static void GameStartIntro()
-    {
+    {        
         Console.Clear();
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Red;
@@ -106,7 +106,7 @@
         Console.Clear();
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(" 상태 보기 ");
+        Console.WriteLine(" ~ 상태 ~");
         Console.WriteLine();        
         Console.WriteLine(" 캐릭터의 정보를 표시합니다. ");
         Console.ResetColor();
@@ -139,8 +139,79 @@
     }
 
     static void DisplayInventory()
-    {
+    {        
+        Console.Clear();
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(" ~ 가방 ~ ");
+        Console.ResetColor();
+        Console.WriteLine();
+        Console.WriteLine(" 보유 중인 아이템을 관리할 수 있습니다. ");
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine(" [아이템 목록] ");
+        Console.ResetColor();
+        Console.WriteLine();
 
+        // 아이템 목록 정보 출력
+        // 아이템 클래스 만들면 수정 필요!
+        
+        Console.WriteLine();
+        Console.WriteLine(" 1. 장착 관리 ");
+        Console.WriteLine();
+        Console.WriteLine(" 0. 나가기 ");
+        Console.WriteLine();
+        Console.WriteLine(" 원하시는 행동을 입력해주세요! ");
+
+        int input = CheckValidInput(0, 1);
+        switch (input)
+        {
+            case 0:
+                DisplayGameIntro();
+                break;
+            case 1:
+                DisplayEquipment();
+                break;
+        }
+    }
+    static void DisplayEquipment()
+    {
+        Console.Clear();
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine(" ~ 장착 관리 ~ ");
+        Console.ResetColor();
+        Console.WriteLine();
+        Console.WriteLine(" 장착을 원하는 장비의 번호를 입력하세요 ");
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        Console.WriteLine(" [아이템 목록] ");
+        Console.ResetColor();
+        Console.WriteLine();
+
+        // 아이템 목록 정보 출력
+        // 아이템 클래스 만들면 수정 필요!
+
+        Console.WriteLine();
+        Console.WriteLine(" 0. 나가기 ");
+        Console.WriteLine();
+
+        // 아이템 클래스 만들면 수정 필요!
+        // 장착 & 해제 로직
+
+        int input = CheckValidInput(0, 1);
+        //if (input > 0 && input <= myitems.Count)
+        //{
+        //    int itemIndex = input - 1;
+        //    Items choicedItem = myitems[itemIndex];
+
+        //    choicedItem.IsEquipped = !choicedItem.IsEquipped;
+        //    DisplayEquipment();
+        //}
+        //else if (input == 0)
+        //{
+        //    DisplayInventory();
+        //}
     }
 
     static int CheckValidInput(int min, int max)
