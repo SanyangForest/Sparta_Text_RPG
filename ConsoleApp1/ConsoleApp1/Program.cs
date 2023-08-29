@@ -1,6 +1,8 @@
 ﻿internal class Program
 { 
     private static Character player;
+
+    private static string UserName;
            
     static void Main(string[] args)
     {
@@ -17,7 +19,10 @@
         Console.WriteLine(" ! ~ Dungeon Of Sparta ~ ! ");
         Console.ResetColor();
         Console.WriteLine();
-        Console.WriteLine(" 직업을 선택해주세요 ");
+        Console.Write(" 이름을 입력해주세요 : ");
+        UserName = Console.ReadLine();
+        Console.WriteLine();
+        Console.WriteLine(" 직업을 선택해주세요 : ");
         Console.WriteLine();
         Console.WriteLine(" 1: 전사 2: 궁수 3: 도적 ");
         int input = CheckValidInput(1, 3);
@@ -40,13 +45,13 @@
         switch(input)
         {
             case 1:
-                player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
+                player = new Character(UserName, "전사", 1, 10, 5, 100, 1500);
                 break;
             case 2:
-                player = new Character("Atena", "궁수", 1, 15, 0, 60, 1500);
+                player = new Character(UserName, "궁수", 1, 15, 0, 60, 1500);
                 break;
             case 3:
-                player = new Character("Hermes", "도적", 1, 12, 3, 80, 1500);
+                player = new Character(UserName, "도적", 1, 12, 3, 80, 1500);
                 break;
         }     
         
