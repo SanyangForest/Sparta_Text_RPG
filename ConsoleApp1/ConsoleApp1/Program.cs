@@ -15,6 +15,13 @@
         {
             // 캐릭터 정보 세팅
             player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
+<<<<<<< Updated upstream
+=======
+
+            // 인벤토리 정보 세팅
+            myinventory = new Inventory();
+            equipmentitem = new Equipment(0, 0, 0);
+>>>>>>> Stashed changes
 
             // 아이템 정보 세팅
         }
