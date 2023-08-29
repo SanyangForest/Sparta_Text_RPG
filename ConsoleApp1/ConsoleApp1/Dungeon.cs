@@ -9,14 +9,14 @@ namespace ConsoleApp1
     internal class Dungeon
     {
 
-       
+
 
         Character player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
-         
+
         internal void ChoiceDungeon()
         {
 
-         
+
             Console.Clear();
             Console.WriteLine("1. 마을");
             Console.WriteLine("2. 베틀");
@@ -39,9 +39,9 @@ namespace ConsoleApp1
         public void Battle()
         {
             Monster[] monsters = {
-            new Monster("대포미니언", 150, 150, 20,2),
-            new Monster("미니언", 100, 100, 10,1),
-            new Monster("공허충", 3, 200, 15,3)
+            new Monster("대포미니언", 2, 10, 200,200),
+            new Monster("미니언", 1, 5, 100,100),
+            new Monster("공허충", 3, 10, 105,300)
         };
 
             Random random = new Random();
@@ -49,64 +49,145 @@ namespace ConsoleApp1
             Monster randomMonster = monsters[randomIndex];
 
             Console.WriteLine($"{randomMonster.Name}가 등장했다!");
-            do
+            while (randomMonster.IsDeath() == false &&  player.IsDeath() == false)
             {
+                Console.Clear();
+               
+                randomMonster.StatusRender(randomMonster.Name);
 
-            Console.Clear();
-            randomMonster.StatusRender(randomMonster.Name);
 
+                if (player.IsDeath()==false)
+                {
+                    randomMonster.BattleLogic(player);
+                }
+                
+
+
+
+
+                Console.WriteLine("1. 때린다");
+                Console.WriteLine("2. 아이템사용");
+                Console.WriteLine("3. 도망간다");
+                if (player.IsDeath() == true)
+                {
+
+
+                    bool isPlayerDead = player.IsDeath();
+                    isPlayerDead = false;
+
+                    Console.Clear();
+                    Death();
+                   
+                  
+                 
+                  
+                }
+                if(randomMonster.IsDeath() == true)
+                {
+
+                    bool isMonsterDead = randomMonster.IsDeath();
+                    isMonsterDead = false;
+                    Console.Clear();
+                    reward();
+
+                
+                   
+                }
+
+
+                int input = Program.CheckValidInput(1, 3);
+                switch (input)
+                {
+                    case 1:
+                        player.BattleLogic(randomMonster);
+                        break;
+                    case 2:
+                        // 스킬
+                        break;
+                    case 3:
+                        Program.DisplayGameIntro();
+                        break;
+                }
+
+                Console.ReadLine();
+              
+            }
+
+            Console.WriteLine("싸움이끝났습니다");
+            Console.ReadLine();
+            Program.DisplayGameIntro();
+        }
+
+
+        public void Death()
+        {
+            Console.WriteLine("사  망");
            
 
-
-
-            Console.WriteLine("1. 때린다");
-            Console.WriteLine("2. 스킬");
-            Console.WriteLine("3. 도망간다");
-            int input = Program.CheckValidInput(1, 3);
+            Console.WriteLine("1. 다시");
+            Console.WriteLine("2. 마을로귀환");
+            int input = Program.CheckValidInput(1, 2);
             switch (input)
             {
                 case 1:
-                    player.BattleLogic(randomMonster);
+                    ChoiceDungeon();
+                 
                     break;
                 case 2:
-                   // 스킬
+                    Program.DisplayGameIntro();
+                    break;          
+            }
+        }
+
+        public void reward()
+        {
+            Console.WriteLine("보상에관련된 로직");
+
+           
+
+            Console.WriteLine("1. 다시");
+            Console.WriteLine("2. 마을로귀환");
+            int input = Program.CheckValidInput(1, 2);
+            switch (input)
+            {
+                case 1:
+                    ChoiceDungeon();
+
                     break;
-                case 3:
+                case 2:
                     Program.DisplayGameIntro();
                     break;
             }
 
-                Console.ReadLine();
-            } while (true);
         }
 
-        enum STARTSELECT
-        {
-            SLELCTTOWN,
-            SLELCBETTLE,
-            NONSELECT
+
+
+
+
 
         }
-
-       
-
-
-
-    }
 
     public class FightUnit
     {
-        public string Name;
+        public string Name { get; set; }
         public int Level { get; set; }
 
         public int Def { get; set; }
         protected int MaxHp { get; set; }
         public int Hp { get; set; }
-    
-       
+
+
         public int Atk { get; set; }
 
         public int Gold { get; set; }
+
+        public bool IsDeath()
+        {
+            bool boolDeath = Hp <= 0;
+
+            return boolDeath;
+        }
 
         public void StatusRender(string _name)
         {
@@ -115,23 +196,23 @@ namespace ConsoleApp1
             Console.WriteLine("의능력치-----------------------------------------------");
             Console.Write("공격력:");
             Console.WriteLine(Atk);
-            //50/100
             Console.Write("체력:");
-            Console.Write(Hp);
-            Console.Write("/");
-            Console.WriteLine(MaxHp);
+            Console.WriteLine(Hp);
             Console.WriteLine("-----------------------------------------------");
         }
-        public void BattleLogic(Monster monster)
+
+
+
+        public void BattleLogic(FightUnit OtherUnit)
         {
 
 
             Console.WriteLine($"Lv.{Level} {Name} 의 공격!");
-            Console.WriteLine($" {Name} 을(를) 맞췄습니다.  [데미지: {Atk}]");
+            Console.WriteLine($" {OtherUnit.Name} 을(를) 맞췄습니다.  [데미지: {Atk}]");
 
-            Console.WriteLine($"Lv.{Level} {Name}");
-            Console.WriteLine($"HP{Hp}-> {Hp -= Atk}");
-            Console.WriteLine($"HP {Hp}");
+            Console.WriteLine($"Lv.{OtherUnit.Level} {OtherUnit.Name}");
+            Console.WriteLine($"HP{OtherUnit.Hp}-> {OtherUnit.Hp -= Atk}");
+            Console.WriteLine($"HP {OtherUnit.Hp}");
 
 
         }
@@ -139,15 +220,15 @@ namespace ConsoleApp1
 
     }
 
-  
+
 
     public class Monster : FightUnit
     {
-          
-        public Monster(string Name, int level, int atk, int hp, int gold)  
+
+        public Monster(string name, int level, int atk, int hp, int gold)
         {
-            
-           
+            Name = name;
+
             Level = level;
             Atk = atk;
 
