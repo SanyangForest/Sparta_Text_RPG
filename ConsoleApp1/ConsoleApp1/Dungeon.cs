@@ -19,7 +19,11 @@ namespace ConsoleApp1
          
             Console.Clear();
             Console.WriteLine("1. 마을");
+<<<<<<< Updated upstream
             Console.WriteLine("2. 베틀");
+=======
+            Console.WriteLine("2. 배틀1");
+>>>>>>> Stashed changes
             Console.WriteLine("진입하시겠습니까?");
 
             int input = Program.CheckValidInput(1, 2);
