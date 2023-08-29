@@ -8,12 +8,15 @@ namespace ConsoleApp1
 {
     internal class Dungeon
     {
-        Character newCharacter = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
+
+       
+
+        Character player = new Character("Chad", "전사", 1, 10, 5, 100, 1500);
          
         internal void ChoiceDungeon()
         {
 
-            Dungeon dungeon = new Dungeon();
+         
             Console.Clear();
             Console.WriteLine("1. 마을");
             Console.WriteLine("2. 베틀");
@@ -22,11 +25,11 @@ namespace ConsoleApp1
             int input = Program.CheckValidInput(1, 2);
             switch (input)
             {
-                case 0:
+                case 1:
                     Program.DisplayGameIntro();
                     break;
-                case 1:
-                    dungeon.Battle();
+                case 2:
+                    Battle();
                     break;
             }
 
@@ -35,19 +38,46 @@ namespace ConsoleApp1
 
         public void Battle()
         {
-            string[] monsterNames = { "대포미니언", "미니언", "공허충" };
+            Monster[] monsters = {
+            new Monster("대포미니언", 150, 150, 20,2),
+            new Monster("미니언", 100, 100, 10,1),
+            new Monster("공허충", 3, 200, 15,3)
+        };
+
             Random random = new Random();
+            int randomIndex = random.Next(monsters.Length);
+            Monster randomMonster = monsters[randomIndex];
 
-            int randomIndex = random.Next(monsterNames.Length);
-            Monster newMonster = new Monster(monsterNames[randomIndex]);
+            Console.WriteLine($"{randomMonster.Name}가 등장했다!");
+            do
+            {
 
-            Console.WriteLine($"{newMonster.Name}가 등장했다!");
-            newMonster.StatusRender(newMonster.Name);
+            Console.Clear();
+            randomMonster.StatusRender(randomMonster.Name);
+
+           
+
 
 
             Console.WriteLine("1. 때린다");
             Console.WriteLine("2. 스킬");
             Console.WriteLine("3. 도망간다");
+            int input = Program.CheckValidInput(1, 3);
+            switch (input)
+            {
+                case 1:
+                    player.BattleLogic(randomMonster);
+                    break;
+                case 2:
+                   // 스킬
+                    break;
+                case 3:
+                    Program.DisplayGameIntro();
+                    break;
+            }
+
+                Console.ReadLine();
+            } while (true);
         }
 
         enum STARTSELECT
@@ -64,39 +94,44 @@ namespace ConsoleApp1
 
     }
 
-    class FightUnit
+    public class FightUnit
     {
-        public String Name = "None";
-        protected int AT = 10;
-        public int HP = 50;
-        protected int MaxHp = 100;
-        protected int LV;
+        public string Name;
+        public int Level { get; set; }
 
+        public int Def { get; set; }
+        protected int MaxHp { get; set; }
+        public int Hp { get; set; }
+    
+       
+        public int Atk { get; set; }
+
+        public int Gold { get; set; }
 
         public void StatusRender(string _name)
         {
             Name = _name;
-            Console.WriteLine(Name);
+            Console.Write(Name);
             Console.WriteLine("의능력치-----------------------------------------------");
             Console.Write("공격력:");
-            Console.WriteLine(AT);
+            Console.WriteLine(Atk);
             //50/100
             Console.Write("체력:");
-            Console.Write(HP);
+            Console.Write(Hp);
             Console.Write("/");
             Console.WriteLine(MaxHp);
             Console.WriteLine("-----------------------------------------------");
         }
-        public void BattleLogic(string _Name)
+        public void BattleLogic(Monster monster)
         {
 
 
-            Console.WriteLine($"Lv.{LV} {Name} 의 공격!");
-            Console.WriteLine($" {_Name} 을(를) 맞췄습니다.  [데미지: {AT}]");
+            Console.WriteLine($"Lv.{Level} {Name} 의 공격!");
+            Console.WriteLine($" {Name} 을(를) 맞췄습니다.  [데미지: {Atk}]");
 
-            Console.WriteLine($"Lv.{LV} {Name}");
-            Console.WriteLine($"HP{HP}-> {HP -= AT}");
-            Console.WriteLine($"HP {HP}");
+            Console.WriteLine($"Lv.{Level} {Name}");
+            Console.WriteLine($"HP{Hp}-> {Hp -= Atk}");
+            Console.WriteLine($"HP {Hp}");
 
 
         }
@@ -104,17 +139,20 @@ namespace ConsoleApp1
 
     }
 
+  
 
-   
-    class Monster : FightUnit
+    public class Monster : FightUnit
     {
-
-        public string Name { get; }
-        public Monster(string _Name)
+          
+        public Monster(string Name, int level, int atk, int hp, int gold)  
         {
+            
+           
+            Level = level;
+            Atk = atk;
 
-            Name = _Name;
-            LV = 1;
+            Hp = hp;
+            Gold = gold;
         }
     }
 
