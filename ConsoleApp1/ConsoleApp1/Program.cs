@@ -40,7 +40,14 @@
                 break;
         }
     }
-
+    static void Shop()
+    {
+        Console.Clear();
+        Console.WriteLine("상점에 오신 것을 환영합니다 !")
+        Console.WriteLine("아래에 물건을 구매하실 수 있습니다.");
+        Console.WriteLine("현재 소지액: " + player.Gold);
+        
+    }
     static void DisplayMyInfo()
     {
         Console.Clear();
