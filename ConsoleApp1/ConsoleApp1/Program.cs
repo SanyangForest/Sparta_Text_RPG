@@ -43,11 +43,52 @@
     static void Shop()
     {
         Console.Clear();
-        Console.WriteLine("상점에 오신 것을 환영합니다 !")
+        Console.WriteLine("상점에 오신 것을 환영합니다 !");
         Console.WriteLine("아래에 물건을 구매하실 수 있습니다.");
         Console.WriteLine("현재 소지액: " + player.Gold);
-        
+        Console.WriteLine("1. 도란검 . 100원");
+        Console.WriteLine();
+        Console.WriteLine("0. 나가기");
+
+        int input = CheckValidInput(0, 1); //인수가 3개 이상쓰면 안되어서 일단은 2개 해놨는데 해결하면 여러개 추가 예정
+        switch (input)
+        {
+            case 0:
+                DisplayGameIntro();
+                break;
+            case 1:
+                BuyItem("도란검", 100);
+                break;
+        }
     }
+
+
+
+    static void BuyItem(string itemName, int itemPrice)
+    {
+        if (player.Gold >= itemPrice)
+        {
+            player.ModifyGold(-itemPrice);
+            Console.WriteLine(itemName + "을(를) 구매했습니다.");
+            Console.WriteLine("남은 소지액: " + player.Gold);
+        }
+        else
+        {
+            Console.WriteLine("소지금이 부족합니다.");
+        }
+
+        Console.WriteLine("0. 나가기");
+
+        int input = CheckValidInput(0, 0);
+        switch (input)
+        {
+            case 0:
+                DisplayGameIntro();
+                break;
+        }
+    }
+
+
     static void DisplayMyInfo()
     {
         Console.Clear();
@@ -105,7 +146,11 @@ public class Character
     public int Atk { get; }
     public int Def { get; }
     public int Hp { get; }
-    public int Gold { get; }
+    public int Gold
+    {
+        get { return Gold; }
+        private set { Gold = value; }
+    }
 
     public Character(string name, string job, int level, int atk, int def, int hp, int gold)
     {
@@ -116,6 +161,11 @@ public class Character
         Def = def;
         Hp = hp;
         Gold = gold;
+    }
+
+    public void ModifyGold(int amount)
+    {
+        Gold += amount;
     }
 }
 
